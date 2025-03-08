@@ -1,9 +1,6 @@
-#include <iostream>
-#include <stdlib.h>
 #include "single_list.h"
 
 using namespace std;
-
 
 List::ListMember::ListMember()
 {
@@ -11,7 +8,7 @@ List::ListMember::ListMember()
 }
 
 
-List::ListMember::~ListMember() {}
+List::ListMember::~ListMember() {delete next; next = nullptr;}
 
 
 List::List()
@@ -23,17 +20,17 @@ List::List()
 
 List::~List() 
 {
-	ListMember *p = head;
 	while (head) {
-		p = head;
-        	head = head->next;
+		ListMember *p = head;
+		head = head->next;
         	delete p;
     	}
  }
 
 
-int List::Size() const {return size;}
 
+int List::Size() const {return size;}
+	
 
 void List::Add(double x)
 {
@@ -46,6 +43,7 @@ void List::Add(double x)
 		cur = cur->next;
 	}
 	cur->next = p;
+	//delete p;
 }
 
 
@@ -60,6 +58,7 @@ void List::AddNewHead(double x)
 		p->next = head;
        		head = p;
     	}
+    	//delete p;
 }
 
 
@@ -76,6 +75,7 @@ void List::Edge(double x, int place)
 	}
 	p->next = cur->next;
 	cur->next = p;
+	//delete p;
 }
 
 
@@ -83,12 +83,12 @@ void List::Edge(double x, int place)
 
 void List::Print()
 {
-	int len = size;
+	int len = 0;
 	ListMember *cur = head;
-	while (len > 0) {
+	while (len < size) {
 		std::cout << cur->num << " ";
 		cur = cur->next;
-		len--;
+		len++;
 	}
 	std::cout << std::endl;
 }
@@ -137,8 +137,8 @@ double List::Middle()
 void List::Reverse()
 {
 	ListMember *cur = head;
-	ListMember *next = nullptr;
-	ListMember *prev = nullptr;	
+	ListMember *next = new ListMember();
+	ListMember *prev = new ListMember();	
 	while (cur != nullptr) {
 		next = cur->next;
 		cur->next = prev;
@@ -146,5 +146,34 @@ void List::Reverse()
 		cur = next;
 	}
 	head = prev;
+	//delete next, prev;
 }
+
+void List::RemoveEl(double x) 
+{
+	ListMember *dummy = new ListMember();
+	dummy->next = head;
+	ListMember *prev = dummy;
+	ListMember *cur = head;
+	while (cur != nullptr) {
+		if (abs(cur->num - x) <= 1e-5) {
+			prev->next = cur->next;
+			size--;
+		}
+		else {prev = cur;}
+		cur = cur->next;	
+	}
+	head = dummy->next;
+	//delete dummy;
+}
+
+
+void List::RemoveHead() 
+{
+	size--;
+	head = head->next;
+}
+
+double List::HeadVal() {return head->num;}
+
 
