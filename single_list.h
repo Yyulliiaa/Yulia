@@ -9,6 +9,7 @@ int is_subsequence(std::string a, std::string b);
 int is_palindrome(std::string a);
 
 
+
 class List 
 {
 private:
@@ -37,5 +38,9 @@ public:
 	void Reverse(); // переворачивает
 	double Middle(); // возвращает элемент из середины
 	void RemoveEl(double x); // удаляет элемент
+	void EdgeInOrder(double x); // вставляет по порядку в отсортированный список
 	
 };
+
+
+void merge(List *a, List *b);

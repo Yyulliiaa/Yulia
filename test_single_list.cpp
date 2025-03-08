@@ -58,6 +58,24 @@ int main() {
 	A -> Print();
 	//delete A;
 	
+
+	
+	List *B = new List();
+	for (int i = 0; i < 12; i+= 3) {
+		B->Add(i);
+	}
+	List *C = new List();
+	for (int i = 1; i < 17; i+= 4) {
+		C->Add(i);
+	}
+	cout << "Отсортированные списки:\n";
+	B -> Print();
+	C -> Print();
+	cout << "Их слияние:\n";
+
+	merge(B, C);	
+	
+	
 	test_middle();
 	test_cycle();
 	test_subsequence();

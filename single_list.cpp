@@ -78,6 +78,20 @@ void List::Edge(double x, int place)
 	//delete p;
 }
 
+void List::EdgeInOrder(double x)
+{
+	ListMember *p = new ListMember;
+	p->num = x;
+	++size;
+	if (!head) {head = p; return;} 
+	ListMember *cur = head;
+	while (cur->next != nullptr && cur->next->num < x) {
+		cur = cur->next;
+	}
+	p->next = cur->next;
+	cur->next = p;
+}
+
 
 
 

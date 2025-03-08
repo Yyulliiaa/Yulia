@@ -27,5 +27,14 @@ int is_palindrome(std::string a) {
 }
 
 
+void merge(List *a, List *b) {
+	while (b->Size() > 0) {
+		a -> EdgeInOrder(b->HeadVal());
+		b ->RemoveHead();
+	}
+	a -> Print();
+}
+
+
 
 
