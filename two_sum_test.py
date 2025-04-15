@@ -1,23 +1,21 @@
 import unittest
-from two_sum import two_sum
+from two_sum import twoSum
 
 
-class TestTwoSum(unittest.TestCase):
-    def test_empty(self):
-        res = two_sum([], 1)
-        self.assertEqual(len(res), 0, "пустой массив")  # add assertion here
+class TestSum(unittest.TestCase):
+    def test1(self):
+        data = [1, 3, 4, 7, 1]
+        target = 8
+        self.assertEqual(twoSum(data, target), [1, 7])
 
-    def test_sorted(self):
-        res = two_sum([9, 9, -1, 10], 1)
-        self.assertEqual(len(res), 0, "массив не отсортирован")
-
-    def test_all_rigth(self):
-        res = two_sum([3, 8, 9, 11, 16, 18, 19, 21], 25)
-        self.assertEqual(res,[2, 4], "2, 4")
-
-    def test_impossible(self):
-        res = two_sum([3, 8, 10, 11, 16, 18, 19, 21], 25)
-        self.assertEqual(len(res), 0, "не найдено")
+    def test2(self):
+        data = [1, 3, 4, 7, 1]
+        target = 1
+        self.assertEqual(twoSum(data, target), [])
+    def test3(self):
+        data = [1, 3, 4, 7, 1]
+        target = 51
+        self.assertEqual(twoSum(data, target), [])
 
 if __name__ == '__main__':
     unittest.main()
